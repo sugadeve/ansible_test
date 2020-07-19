@@ -1,0 +1,15 @@
+---
+- name: Check all port numbers are accessible from current host
+  hosts: ansible_client
+  become: true
+  tasks:
+    - name: telnet localhost 80
+      wait_for:
+        host: localhost
+        port: "{{ item }}"
+        state: started         # Port should be open
+        delay: 0               # No wait before first check (sec)
+        timeout: 3             # Stop checking after timeout (sec)
+      ignore_errors: yes
+      with_items:
+        - 80
