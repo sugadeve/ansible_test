@@ -1,0 +1,4 @@
+---
+ - name: Register nslookup hostname result
+   command: nslookup www.google.com
+   register: ns
