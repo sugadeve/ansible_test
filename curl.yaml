@@ -1,0 +1,12 @@
+---
+- name: Curl google site
+  hosts: ansible_client
+  become: true
+  tasks:
+    - name: Curl google site
+      uri:
+        url: https://www.google.com
+    - name: Check the return content
+      uri:
+        url: https://www.google.com
+        return_content: yes
