@@ -1,0 +1,14 @@
+---
+- name: sample_book
+  hosts: ansible_client
+  remote_user: root
+  tasks:
+    - name: install httpd
+      apt: name=apache2 state=latest
+      become: yes
+
+    - name: Open port 80 for http access
+      firewalld:
+               service: http
+               permanent: true
+               state: enabled
